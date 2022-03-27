@@ -1,0 +1,22 @@
+<div class="header-container"
+     xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+    <div class="site-name">Online Games Store Backoffice</div>
+
+    <div class="header-bar">
+        <th:block sec:authorize="isAuthenticated()">
+            Hello <span th:text="${#request.userPrincipal.name}">user</span>
+            &nbsp;|&nbsp;
+            <a href="javascript: document.logoutForm.submit()" role="menuitem"> Logout</a>
+            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                <input hidden type="submit" value="Sign Out"/>
+            </form>
+        </th:block>
+
+        <th:block sec:authorize="!isAuthenticated()">
+            <a th:href="@{/login}">Login</a>
+        </th:block>
+    </div>
+
+</div>
