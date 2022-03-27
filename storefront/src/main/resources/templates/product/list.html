@@ -31,7 +31,7 @@
 <div class="page-navigator" th:if="${products.totalPages > 1}">
     <th:block th:each="page : ${pageNumbers}">
 
-        <a th:href="@{|/productList?page=${page}|}" th:if="${page != -1}"
+        <a th:href="@{|/product/all?page=${page}|}" th:if="${page != -1}"
            class="nav-item" th:utext="${page}"></a>
 
         <span class="nav-item" th:if="${page == -1}"> ... </span>

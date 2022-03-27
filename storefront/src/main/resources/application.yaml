@@ -3,7 +3,7 @@ spring:
     store-type: redis
     redis:
       flush-mode: on_save
-      namespace: spring:session
+      namespace: storefront:session
     timeout:
   redis:
     host: localhost
