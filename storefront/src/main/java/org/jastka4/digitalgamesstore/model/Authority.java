@@ -1,7 +1,7 @@
 package org.jastka4.digitalgamesstore.model;
 
 import lombok.*;
-import org.jastka4.digitalgamesstore.configuration.AuthorityType;
+import org.jastka4.digitalgamesstore.utils.AuthorityType;
 
 import javax.persistence.*;
 

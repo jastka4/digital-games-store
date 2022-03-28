@@ -38,7 +38,7 @@ public class CartController {
 
     @PostMapping("/add")
     public String add(final HttpSession session,
-                      @RequestParam(value = "code", defaultValue = "") final String code) {
+                      @RequestParam(value = "code") final String code) {
         final CartData cart = CartUtils.getCartInSession(session);
 
         final ProductData product = productService.getByCode(code);

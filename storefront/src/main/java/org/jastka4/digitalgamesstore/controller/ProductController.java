@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,10 +22,10 @@ public class ProductController {
     @Resource
     private ProductService productService;
 
-    @RequestMapping({"/all"})
-    public String listProductHandler(final Model model,
-                                     @RequestParam("page") final Optional<Integer> page,
-                                     @RequestParam("size") final Optional<Integer> size) {
+    @GetMapping("/all")
+    public String listAll(final Model model,
+                          @RequestParam("page") final Optional<Integer> page,
+                          @RequestParam("size") final Optional<Integer> size) {
         final int currentPage = page.orElse(1);
         final int pageSize = size.orElse(3);
 
