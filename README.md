@@ -21,8 +21,11 @@
 
 ## Architecture
 
-I was not able to prepare everything as I initially wanted due to the lack of time. In the image below you can see a
-very high-level design of what I was going for.
+I was not able to prepare everything as I initially wanted due to the lack of time. I have prepared just a simple proof
+of concept application, thus I have not implemented the same architecture as proposed below. Instead of three different
+applications I have implemented just one with a simple Thymeleaf front-end.
+
+In the image below you can see a very high-level design of what I was going for.
 
 ![High-level design](https://github.com/jastka4/digital-games-store/blob/assets/simplified-architecture-design.png)
 
