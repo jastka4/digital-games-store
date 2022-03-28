@@ -16,8 +16,9 @@ public class ProductData implements Serializable {
     private String code;
     private String name;
     private double price;
+    private boolean onlineCatalogue;
 
     public static ProductData fromEntity(final Product product) {
-        return new ProductData(product.getCode(), product.getName(), product.getPrice());
+        return new ProductData(product.getCode(), product.getName(), product.getPrice(), product.isOnlineCatalogue());
     }
 }

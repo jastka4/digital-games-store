@@ -3,6 +3,7 @@ version: '3.9'
 services:
 
   db:
+    container_name: "PostgreSQL"
     image: postgres
     restart: always
     ports:
@@ -12,13 +13,26 @@ services:
       POSTGRES_DB: online-games-store
 
   adminer:
+    container_name: "Adminer"
     image: adminer
     restart: always
     ports:
       - "8090:8080"
 
   redis:
+    container_name: "Redis"
     image: redis
     restart: always
     ports:
       - "6379:6379"
+
+  rabbitmq:
+    container_name: "RabbitMQ"
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=myuser
+      - RABBITMQ_DEFAULT_PASS=mypassword

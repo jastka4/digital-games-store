@@ -1,20 +1,27 @@
 package org.jastka4.digitalgamesstorebackoffice.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.Type;
+import org.jastka4.digitalgamesstorebackoffice.forms.ProductForm;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.io.IOException;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "products")
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Getter
 @Setter
 public class Product {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
     @Column(name = "code", length = 20, nullable = false)
     private String code;
 
@@ -27,11 +34,20 @@ public class Product {
     @Column(name = "online_catalogue", length = 1, nullable = false)
     private boolean onlineCatalogue;
 
-    @Lob
+    @Type(type = "org.hibernate.type.BinaryType")
     @Column(name = "image", length = Integer.MAX_VALUE, nullable = true)
+    @Basic(fetch = FetchType.LAZY)
     private byte[] image;
 
-    //    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_date", nullable = false)
-    private LocalDate createDate;
+    private LocalDateTime createDate;
+
+    public Product(final ProductForm productForm) throws IOException {
+        this.code = productForm.getCode();
+        this.name = productForm.getName();
+        this.price = productForm.getPrice();
+        this.image = productForm.getFileData().getBytes();
+        this.onlineCatalogue = false;
+        this.createDate = LocalDateTime.now();
+    }
 }

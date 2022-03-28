@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <title>Product List</title>
+    <title>Products List</title>
     <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
 </head>
 <body>
@@ -12,13 +12,24 @@
 
 <div class="page-title">Product List</div>
 
-<div class="product-preview-container" th:each="prodInfo : ${products.content}">
+<div class="product-preview-container" th:each="prodData : ${products.content}">
     <ul>
         <li><img class="product-image"
-                 th:src="@{|/productImage?code=${prodInfo.code}|}"/></li>
-        <li>Code: <span th:utext="${prodInfo.code}"></span></li>
-        <li>Name: <span th:utext="${prodInfo.name}"></span></li>
-        <li>Price: <span th:utext="${#numbers.formatDecimal(prodInfo.price,3,2,'COMMA')}"></span></li>
+                 th:src="@{|/productImage?code=${prodData.code}|}"/></li>
+        <li>Code: <span th:utext="${prodData.code}"></span></li>
+        <li>Name: <span th:utext="${prodData.name}"></span></li>
+        <li>Price: <span th:utext="${#numbers.formatDecimal(prodData.price,3,2,'COMMA')}"></span></li>
+        <li>Online Catalogue: <span th:utext="${prodData.onlineCatalogue}"></span></li>
+        <th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+            <li th:if="${!prodData.onlineCatalogue}">
+                <a style="color:red;"
+                   th:href="@{|/product/edit?code=${prodData.code}|}">Edit Product</a>
+            </li>
+            <li th:if="${!prodData.onlineCatalogue}">
+                <a style="color:blue;"
+                   th:href="@{|/product/sync?code=${prodData.code}|}">Sync</a>
+            </li>
+        </th:block>
     </ul>
 </div>
 
@@ -29,7 +40,7 @@
         <a th:href="@{|/product/all?page=${page}|}" th:if="${page != -1}"
            class="nav-item" th:utext="${page}"></a>
 
-        <span class="nav-item" th:if="${page == -1}"> ... </span>
+        <span class="nav-item" th:if="${page == -1}"></span>
 
     </th:block>
 </div>
