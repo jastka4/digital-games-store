@@ -13,7 +13,7 @@ drop table if exists orders cascade;
 -- Create table
 create table users
 (
-    id       VARCHAR(50)  NOT NULL PRIMARY KEY,
+    id       INT          NOT NULL PRIMARY KEY,
     username varchar(50)  NOT NULL,
     password varchar(100) NOT NULL,
     enabled  boolean      not null DEFAULT true
@@ -22,36 +22,37 @@ create table users
 -- Create table
 create table authorities
 (
-    id   VARCHAR(50)  NOT NULL PRIMARY KEY,
+    id   INT          NOT NULL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 ---------------------------------------
 -- Create table
 create table user_authorities
 (
-    authority_id VARCHAR(50) not null,
-    user_id      VARCHAR(50) not null,
+    authority_id INT not null,
+    user_id      INT not null,
     CONSTRAINT user_authorities_users_fk foreign key (user_id) references users (id)
 );
 
-CREATE UNIQUE INDEX ix_user_authorities_user on user_authorities (authority_id, user_id);
+CREATE UNIQUE INDEX ix_user_authorities_authority_id_user_id on user_authorities (authority_id, user_id);
 ---------------------------------------
 create table products
 (
+    id               INT                         not null PRIMARY KEY,
     code             VARCHAR(20)                 not null,
     image            bytea,
     name             VARCHAR(255)                not null,
     price            double precision            not null,
     online_catalogue BOOLEAN                     not null,
-    create_date      Timestamp without time zone not null,
-    UNIQUE (code, online_catalogue),
-    PRIMARY KEY (code, online_catalogue)
+    create_date      Timestamp without time zone not null
 );
+
+CREATE UNIQUE INDEX ix_products_code_online_catalogue on products (code, online_catalogue);
 ---------------------------------------
 -- Create table
 create table orders
 (
-    id               VARCHAR(50)                 not null PRIMARY KEY,
+    id               INT                         not null PRIMARY KEY,
     amount           double precision            not null,
     customer_address VARCHAR(255)                not null,
     customer_email   VARCHAR(128)                not null,
@@ -67,12 +68,12 @@ alter table orders
 -- Create table
 create table order_details
 (
-    id                       VARCHAR(50)      not null PRIMARY KEY,
+    id                       INT              not null PRIMARY KEY,
     amount                   double precision not null,
     price                    double precision not null,
     quantity                 INT              not null,
-    order_id                 VARCHAR(50)      not null,
-    product_id               VARCHAR(20)      not null,
+    order_id                 INT              not null,
+    product_code             VARCHAR(5)       not null,
     product_online_catalogue BOOLEAN          not null
 );
 
@@ -80,5 +81,5 @@ alter table order_details
     add constraint order_details_ord_fk foreign key (order_id)
         references orders (id);
 alter table order_details
-    add constraint order_details_prod_fk foreign key (product_id, product_online_catalogue)
+    add constraint order_details_prod_fk foreign key (product_code, product_online_catalogue)
         references products (code, online_catalogue);

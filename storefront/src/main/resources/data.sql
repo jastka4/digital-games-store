@@ -19,32 +19,32 @@ insert into user_authorities (authority_id, user_id)
 values (2, 2);
 
 ---------------------------------------
-insert into products (code, name, price, online_catalogue, create_date)
-values ('S001', 'Game 1', 100, true, current_timestamp);
+insert into products (id, code, name, price, online_catalogue, create_date)
+values (1, 'S001', 'Game 1', 100, true, current_timestamp);
 
-insert into products (code, name, price, online_catalogue, create_date)
-values ('S001', 'Game 1', 100, false, current_timestamp);
+insert into products (id, code, name, price, online_catalogue, create_date)
+values (2, 'S001', 'Game 1', 100, false, current_timestamp);
 
-insert into products (code, name, price, online_catalogue, create_date)
-values ('S002', 'Game 2', 50, true, current_timestamp);
+insert into products (id, code, name, price, online_catalogue, create_date)
+values (3, 'S002', 'Game 2', 50, true, current_timestamp);
 
-insert into products (code, name, price, online_catalogue, create_date)
-values ('S002', 'Game 2', 50, false, current_timestamp);
+insert into products (id, code, name, price, online_catalogue, create_date)
+values (4, 'S002', 'Game 2', 50, false, current_timestamp);
 
-insert into products (code, name, price, online_catalogue, create_date)
-values ('S003', 'Game 3', 120, true, current_timestamp);
+insert into products (id, code, name, price, online_catalogue, create_date)
+values (5, 'S003', 'Game 3', 120, true, current_timestamp);
 
-insert into products (code, name, price, online_catalogue, create_date)
-values ('S003', 'Game 3', 120, false, current_timestamp);
+insert into products (id, code, name, price, online_catalogue, create_date)
+values (6, 'S003', 'Game 3', 120, false, current_timestamp);
 
-insert into products (code, name, price, online_catalogue, create_date)
-values ('S004', 'Game 4', 120, true, current_timestamp);
+insert into products (id, code, name, price, online_catalogue, create_date)
+values (7, 'S004', 'Game 4', 120, true, current_timestamp);
 
-insert into products (code, name, price, online_catalogue, create_date)
-values ('S004', 'Game 4', 120, false, current_timestamp);
+insert into products (id, code, name, price, online_catalogue, create_date)
+values (8, 'S004', 'Game 4', 120, false, current_timestamp);
 
-insert into products (code, name, price, online_catalogue, create_date)
-values ('S005', 'Game 5', 110, true, current_timestamp);
+insert into products (id, code, name, price, online_catalogue, create_date)
+values (9, 'S005', 'Game 5', 110, true, current_timestamp);
 
-insert into products (code, name, price, online_catalogue, create_date)
-values ('S005', 'Game 5', 110, false, current_timestamp);
+insert into products (id, code, name, price, online_catalogue, create_date)
+values (10, 'S005', 'Game 5', 110, false, current_timestamp);
