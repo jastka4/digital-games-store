@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    Product findByCode(String code);
+    Product findByCodeAndOnlineCatalogue(String code, final boolean onlineCatalogue);
 
     Page<Product> findAllByOnlineCatalogue(final boolean onlineCatalogue, final Pageable pageable);
 }

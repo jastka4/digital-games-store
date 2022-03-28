@@ -38,7 +38,7 @@ CREATE UNIQUE INDEX ix_user_authorities_authority_id_user_id on user_authorities
 ---------------------------------------
 create table products
 (
-    id               INT                         not null PRIMARY KEY,
+    id               SERIAL                      not null PRIMARY KEY,
     code             VARCHAR(20)                 not null,
     image            bytea,
     name             VARCHAR(255)                not null,
@@ -73,7 +73,7 @@ create table order_details
     price                    double precision not null,
     quantity                 INT              not null,
     order_id                 INT              not null,
-    product_code             VARCHAR(5)       not null,
+    product_code             VARCHAR(20)      not null,
     product_online_catalogue BOOLEAN          not null
 );
 

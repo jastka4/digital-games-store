@@ -5,8 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
+import org.jastka4.digitalgamesstore.forms.ProductForm;
 
 import javax.persistence.*;
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,9 +18,10 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class Product {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "code", length = 20, nullable = false)
     private String code;
@@ -39,4 +42,13 @@ public class Product {
 
     @Column(name = "create_date", nullable = false)
     private LocalDateTime createDate;
+
+    public Product(final ProductForm productForm) throws IOException {
+        this.code = productForm.getCode();
+        this.name = productForm.getName();
+        this.price = productForm.getPrice();
+        this.image = productForm.getFileData().getBytes();
+        this.onlineCatalogue = false;
+        this.createDate = LocalDateTime.now();
+    }
 }

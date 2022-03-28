@@ -2,6 +2,7 @@ package org.jastka4.digitalgamesstore.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,5 +23,10 @@ public class HomepageController {
     @GetMapping("/session-id")
     public String uid(HttpSession session) {
         return session.getId();
+    }
+
+    @RequestMapping("/403")
+    public String accessDenied() {
+        return "403";
     }
 }

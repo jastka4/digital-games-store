@@ -4,6 +4,7 @@ import org.jastka4.digitalgamesstore.data.ProductData;
 import org.jastka4.digitalgamesstore.service.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,8 @@ public class ProductController {
         final int currentPage = page.orElse(1);
         final int pageSize = size.orElse(3);
 
-        final Page<ProductData> results = productService.getPaginated(PageRequest.of(currentPage - 1, pageSize));
+        final Page<ProductData> results = productService.getPaginated(true,
+                PageRequest.of(currentPage - 1, pageSize, Sort.by("name")));
         model.addAttribute("products", results);
 
         final int totalPages = results.getTotalPages();

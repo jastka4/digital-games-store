@@ -26,3 +26,12 @@ spring:
     init:
       mode: always
       platform: postgre
+  rabbitmq:
+    username: myuser
+    password: mypassword
+    host: localhost
+    port: 5672
+
+config:
+  rabbitmq:
+    queue: product.update
